@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include <JuceHeader.h>
+#include "VibratoSliderLookAndFeel.h"
+
+class VibratoSlider : public juce::Slider
+{
+public:
+    VibratoSlider();
+    ~VibratoSlider();
+
+private:
+    VibratoSliderLookAndFeel vibratoSliderLookAndFeel;
+};

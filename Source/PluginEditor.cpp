@@ -15,6 +15,9 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
 {
     edge = 5;
     setSize(500, 250);
+
+    addAndMakeVisible(sweepWidthVibratoSlider);
+    addAndMakeVisible(waveformsVibratoSlider);
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -37,6 +40,10 @@ void FreeVibratoAudioProcessorEditor::paint (juce::Graphics& g)
 
 void FreeVibratoAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    auto bounds = getBounds();
+
+    //TODO set responsive sizes
+    sweepWidthVibratoSlider.setBounds(50, 75, 100, 100);
+    waveformsVibratoSlider.setBounds(200, 75, 100, 100);
+
 }

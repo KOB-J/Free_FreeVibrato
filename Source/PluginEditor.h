@@ -10,6 +10,8 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "VibratoSlider.h"
+
 
 //==============================================================================
 /**
@@ -28,6 +30,9 @@ private:
     int edge;
 
     FreeVibratoAudioProcessor& audioProcessor;
+
+    VibratoSlider sweepWidthVibratoSlider, waveformsVibratoSlider;
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FreeVibratoAudioProcessorEditor)
 };

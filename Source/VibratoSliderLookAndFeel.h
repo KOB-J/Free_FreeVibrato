@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "Constants.h"
 
 class VibratoSliderLookAndFeel : public juce::LookAndFeel_V4
 {
@@ -34,38 +35,43 @@ public:
 
         auto bounds = juce::Rectangle<float>(x, y, width, height).withSizeKeepingCentre(width, height);
 
+        juce::Path circle1;
+        circle1.addEllipse(bounds);
+        g.setColour(juce::Colours::white);
+        g.fillPath(circle1);
+
         juce::Path path3;
 
-        path3.addPieSegment(bounds,
-            0,// -2 * juce::MathConstants<float>::pi / 3,
-            //11 * juce::MathConstants<float>::pi / 6 * slider.getValue(),
-            juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
-            0.2f);
+        //path3.addPieSegment(bounds,
+        //    0,// -2 * juce::MathConstants<float>::pi / 3,
+        //    //11 * juce::MathConstants<float>::pi / 6 * slider.getValue(),
+        //    juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
+        //    0.2f);
 
-        //path2.applyTransform(juce::AffineTransform::rotation(juce::MathConstants<float>::pi));
+        ////path2.applyTransform(juce::AffineTransform::rotation(juce::MathConstants<float>::pi));
 
-        g.setGradientFill(juce::ColourGradient(
-            blueAlpha,//juce::Colours::orange,
-            x,
-            y,
-            darkBlueAlpha,//juce::Colours::magenta,
-            width,
-            height,
-            false
-        ));
-        //g.setColour(juce::Colours::orange);
-        g.fillPath(path3);
+        //g.setGradientFill(juce::ColourGradient(
+        //    blueAlpha,//juce::Colours::orange,
+        //    x,
+        //    y,
+        //    darkBlueAlpha,//juce::Colours::magenta,
+        //    width,
+        //    height,
+        //    false
+        //));
+        ////g.setColour(juce::Colours::orange);
+        //g.fillPath(path3);
 
 
         //***********************************
 
         juce::Path path2;
-
+        bounds.reduce(3, 3);
         path2.addPieSegment(bounds,
             0,// -2 * juce::MathConstants<float>::pi / 3,
             //11 * juce::MathConstants<float>::pi / 6 * slider.getValue(),
             juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
-            0.5f);
+            0.7f);
 
         //path2.applyTransform(juce::AffineTransform::rotation(juce::MathConstants<float>::pi));
 
@@ -82,17 +88,23 @@ public:
         //g.setColour(juce::Colours::orange);
         g.fillPath(path2);
 
-        //*****************************
+        bounds.reduce(7, 7);
+        juce::Path circle2;
+        circle2.addEllipse(bounds);
+        g.setColour(pluginColor);
+        g.fillPath(circle2);
+
+        ////*****************************
 
 
-        juce::Path path;
-        path.addPieSegment(bounds,
-            0,//juce::MathConstants<float>::twoPi,
-            juce::MathConstants<float>::twoPi,
-            0.5f);
+        //juce::Path path;
+        //path.addPieSegment(bounds,
+        //    0,//juce::MathConstants<float>::twoPi,
+        //    juce::MathConstants<float>::twoPi,
+        //    0.5f);
 
-        g.setColour(blue);
-        g.strokePath(path, juce::PathStrokeType(1.5f));
+        //g.setColour(blue);
+        //g.strokePath(path, juce::PathStrokeType(1.5f));
     }
 
 private:

@@ -17,6 +17,8 @@
       <FILE id="s8yGSK" name="VibratoSlider.h" compile="0" resource="0" file="Source/VibratoSlider.h"/>
       <FILE id="BgBOPb" name="VibratoSliderLookAndFeel.h" compile="0" resource="0"
             file="Source/VibratoSliderLookAndFeel.h"/>
+      <FILE id="AXS277" name="WaveformsComponent.h" compile="0" resource="0"
+            file="Source/WaveformsComponent.h"/>
     </GROUP>
     <GROUP id="{9B8468D6-ED7B-2E1A-CCFF-9F40A1132F83}" name="DSP">
       <FILE id="qhzIZS" name="Vibrato.cpp" compile="1" resource="0" file="Source/Vibrato.cpp"/>

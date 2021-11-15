@@ -24,6 +24,7 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     addAndMakeVisible(vibratoLabel);
     addAndMakeVisible(undoRedoComponent);
     addAndMakeVisible(vibratoComboBox);
+    addAndMakeVisible(waveformsComponent);
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -58,4 +59,7 @@ void FreeVibratoAudioProcessorEditor::resized()
     undoRedoComponent.setTopLeftPosition(getWidth() - (getWidth() / 4), edge);
 
     vibratoComboBox.setBounds(getWidth() - (getWidth() / 2), edge, 100, 30);
+
+    waveformsComponent.setSize(200, 100);
+    waveformsComponent.setTopLeftPosition(edge + 15,  getHeight() - 80);
 }

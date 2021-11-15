@@ -11,7 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "VibratoSlider.h"
-
+#include "VibratoLabel.h"
 
 //==============================================================================
 /**
@@ -32,7 +32,7 @@ private:
     FreeVibratoAudioProcessor& audioProcessor;
 
     VibratoSlider sweepWidthVibratoSlider, waveformsVibratoSlider;
-
+    VibratoLabel vibratoLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FreeVibratoAudioProcessorEditor)
 };

@@ -18,6 +18,7 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
 
     addAndMakeVisible(sweepWidthVibratoSlider);
     addAndMakeVisible(waveformsVibratoSlider);
+    addAndMakeVisible(vibratoLabel);
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -46,4 +47,5 @@ void FreeVibratoAudioProcessorEditor::resized()
     sweepWidthVibratoSlider.setBounds(50, 75, 100, 100);
     waveformsVibratoSlider.setBounds(200, 75, 100, 100);
 
+    vibratoLabel.setBounds(edge + 15, edge + 5, getWidth() / 4, getHeight() / 5);
 }

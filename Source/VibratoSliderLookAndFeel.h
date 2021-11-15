@@ -39,7 +39,7 @@ public:
         path3.addPieSegment(bounds,
             0,// -2 * juce::MathConstants<float>::pi / 3,
             //11 * juce::MathConstants<float>::pi / 6 * slider.getValue(),
-            juce::MathConstants<float>::twoPi * slider.getValue(),
+            juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
             0.2f);
 
         //path2.applyTransform(juce::AffineTransform::rotation(juce::MathConstants<float>::pi));
@@ -64,7 +64,7 @@ public:
         path2.addPieSegment(bounds,
             0,// -2 * juce::MathConstants<float>::pi / 3,
             //11 * juce::MathConstants<float>::pi / 6 * slider.getValue(),
-            juce::MathConstants<float>::twoPi * slider.getValue(),
+            juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
             0.5f);
 
         //path2.applyTransform(juce::AffineTransform::rotation(juce::MathConstants<float>::pi));

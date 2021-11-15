@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 //#include "PluginProcessor.h"
+#include "Constants.h"
 
 class UndoRedoComponent : public juce::Component
 {
@@ -27,8 +28,8 @@ public:
 
         setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::black);
 
-        undoButton.setColour(juce::TextButton::buttonColourId, juce::Colours::dodgerblue);
-        redoButton.setColour(juce::TextButton::buttonColourId, juce::Colours::dodgerblue);
+        undoButton.setColour(juce::TextButton::buttonColourId, pluginColor);
+        redoButton.setColour(juce::TextButton::buttonColourId, pluginColor);
 
         undoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->undo(); };
         redoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->redo(); };

@@ -13,17 +13,16 @@
 #include "VibratoSlider.h"
 #include "VibratoLabel.h"
 #include "UndoRedoComponent.h"
+#include "VibratoComboBox.h"
+#include "Constants.h"
 
-//==============================================================================
-/**
-*/
+
 class FreeVibratoAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
     FreeVibratoAudioProcessorEditor (FreeVibratoAudioProcessor&);
     ~FreeVibratoAudioProcessorEditor() override;
 
-    //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
 
@@ -35,6 +34,7 @@ private:
     VibratoSlider sweepWidthVibratoSlider, lfoFrequencyVibratoSlider;
     VibratoLabel vibratoLabel;
     UndoRedoComponent undoRedoComponent;
+    VibratoComboBox vibratoComboBox; 
 
     juce::AudioProcessorValueTreeState::SliderAttachment sweepWidthSliderAttachment, lfoFrenquencySliderAttachment;
 

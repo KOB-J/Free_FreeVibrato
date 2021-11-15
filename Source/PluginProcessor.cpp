@@ -180,7 +180,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout FreeVibratoAudioProcessor::g
     layout.add(std::make_unique<juce::AudioParameterFloat>(
         "sweepWidth",
         "sweepWidth",
-        juce::NormalisableRange<float>(0.0f, 0.04f, 0.0005f),
+        juce::NormalisableRange<float>(0.0f, 0.05f, 0.0005f),
         0.0015f));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>(

@@ -13,9 +13,8 @@
 FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    edge = 5;
+    setSize(500, 250);
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -25,12 +24,15 @@ FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
 //==============================================================================
 void FreeVibratoAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll(juce::Colours::white);
 
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    g.setColour(juce::Colours::dodgerblue);
+
+    juce::Path roundedBackground;
+    juce::Rectangle<int> localBounds = getLocalBounds();
+    localBounds.reduce(edge, edge);
+    roundedBackground.addRoundedRectangle(localBounds, 20.0f);
+    g.fillPath(roundedBackground);
 }
 
 void FreeVibratoAudioProcessorEditor::resized()

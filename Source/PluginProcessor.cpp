@@ -137,12 +137,12 @@ void FreeVibratoAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
 
-    float sweepWidth_ = apvts.getRawParameterValue("sweepWidth")->load();
-    float frequency_ = apvts.getRawParameterValue("lfoFrequency")->load();
-    float waveform_ = apvts.getRawParameterValue("Waveforms")->load();
-    float interpolation_ = apvts.getRawParameterValue("Interpolation")->load();
+    float sweepWidth = apvts.getRawParameterValue("sweepWidth")->load();
+    float frequency = apvts.getRawParameterValue("lfoFrequency")->load();
+    float waveform = apvts.getRawParameterValue("Waveforms")->load();
+    float interpolation = apvts.getRawParameterValue("Interpolation")->load();
 
-    vibrato.process(buffer, sweepWidth_, frequency_, waveform_, interpolation_);
+    vibrato.process(buffer, sweepWidth, frequency, waveform, interpolation);
 }
 
 //==============================================================================

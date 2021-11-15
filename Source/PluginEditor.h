@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include "VibratoSlider.h"
 #include "VibratoLabel.h"
+#include "UndoRedoComponent.h"
 
 //==============================================================================
 /**
@@ -31,8 +32,11 @@ private:
 
     FreeVibratoAudioProcessor& audioProcessor;
 
-    VibratoSlider sweepWidthVibratoSlider, waveformsVibratoSlider;
+    VibratoSlider sweepWidthVibratoSlider, lfoFrequencyVibratoSlider;
     VibratoLabel vibratoLabel;
+    UndoRedoComponent undoRedoComponent;
+
+    juce::AudioProcessorValueTreeState::SliderAttachment sweepWidthSliderAttachment, lfoFrenquencySliderAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FreeVibratoAudioProcessorEditor)
 };

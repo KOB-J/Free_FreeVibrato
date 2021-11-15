@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="zlPfLE" name="FreeVibrato">
     <GROUP id="{E1B2019C-3853-5D7D-9209-FAB883ED45CF}" name="GUI">
+      <FILE id="C7xuWv" name="UndoRedoComponent.h" compile="0" resource="0"
+            file="Source/UndoRedoComponent.h"/>
       <FILE id="XTVMcU" name="VibratoLabel.h" compile="0" resource="0" file="Source/VibratoLabel.h"/>
       <FILE id="WDpmhY" name="VibratoSlider.cpp" compile="1" resource="0"
             file="Source/VibratoSlider.cpp"/>

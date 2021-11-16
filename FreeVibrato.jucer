@@ -7,6 +7,8 @@
       <FILE id="PsMErf" name="Constants.h" compile="0" resource="0" file="Source/Constants.h"/>
     </GROUP>
     <GROUP id="{E1B2019C-3853-5D7D-9209-FAB883ED45CF}" name="GUI">
+      <FILE id="Bv0tXD" name="InterpolationComponent.h" compile="0" resource="0"
+            file="Source/InterpolationComponent.h"/>
       <FILE id="C7xuWv" name="UndoRedoComponent.h" compile="0" resource="0"
             file="Source/UndoRedoComponent.h"/>
       <FILE id="HWLNzo" name="VibratoComboBox.h" compile="0" resource="0"

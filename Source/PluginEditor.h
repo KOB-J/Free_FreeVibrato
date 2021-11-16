@@ -33,6 +33,7 @@ private:
 
     FreeVibratoAudioProcessor& audioProcessor;
 
+    //TODO use unique_ptr
     VibratoSlider sweepWidthVibratoSlider, lfoFrequencyVibratoSlider;
     VibratoLabel vibratoLabel;
     UndoRedoComponent undoRedoComponent;

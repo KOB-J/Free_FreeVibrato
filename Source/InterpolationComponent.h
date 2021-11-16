@@ -12,11 +12,17 @@
 
 #include <JuceHeader.h>
 
-class InterpolationComponent : public juce::Component 
+class InterpolationComponent 
+    : public juce::Component 
+    , public juce::AudioProcessorValueTreeState::Listener
 {
 public:
-    InterpolationComponent()
+    InterpolationComponent(FreeVibratoAudioProcessor& p)
+        : audioProcessor(p)
     {
+        selectedButton = 0.0f;
+
+        p.getApvts()->addParameterListener(juce::StringRef("Interpolation"), this);
         addAndMakeVisible(interpolationLabel);
         addAndMakeVisible(nearestInterpolation);
         addAndMakeVisible(linearInterpolation);
@@ -27,7 +33,14 @@ public:
         linearInterpolation.setButtonText("Linear");
         cubicInterpolation.setButtonText("Cubic");
 
-        nearestInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor);
+        nearestInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor.darker());
+        linearInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor);
+        cubicInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor);
+
+        nearestInterpolation.onClick = [this] {buttonClicked(0.0f); };
+        linearInterpolation.onClick = [this] {buttonClicked(0.5f); };
+        cubicInterpolation.onClick = [this] {buttonClicked(1.0f); };
+
     }
 
     ~InterpolationComponent()
@@ -51,7 +64,51 @@ public:
         cubicInterpolation.setBounds(getX(), stepAhead * 3, getWidth(), stepAhead);
     }
 
+    void parameterChanged(const juce::String& parameterID, float newValue) override
+    {
+        DBG("it does work! parameterID= "<<parameterID<<" newValue= "<<newValue);
+        if (selectedButton != newValue) highlightSelectedButton(newValue);
+    }
+
+    void buttonClicked(float buttonNumber)
+    {
+        highlightSelectedButton(buttonNumber);
+        audioProcessor.getApvts()->getParameter(juce::StringRef("Interpolation"))->setValueNotifyingHost(buttonNumber);
+    }
+
+    void highlightSelectedButton(float buttonNumber)
+    {
+        if (selectedButton != buttonNumber)
+        {
+            getButton(selectedButton)->setColour(juce::TextButton::buttonColourId, pluginColor);
+            getButton(buttonNumber)->setColour(juce::TextButton::buttonColourId, pluginColor.darker());
+            selectedButton = buttonNumber;
+        }
+    }
+
+
+
 private:
+    FreeVibratoAudioProcessor& audioProcessor;
+
     juce::Label interpolationLabel;
     juce::TextButton nearestInterpolation, linearInterpolation, cubicInterpolation;
+
+    float selectedButton;
+
+    juce::TextButton* getButton(float buttonNumber)
+    {
+        switch ((int)buttonNumber)
+        {
+        case 0: return &nearestInterpolation;
+            break;
+        case 1: return &linearInterpolation;
+            break;
+        case 2: return &cubicInterpolation;
+            break;
+        default:
+            break;
+        }
+    }
+
 };

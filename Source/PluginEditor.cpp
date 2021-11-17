@@ -17,6 +17,7 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     , undoRedoComponent (p)
     , interpolationComponent(p)
     , waveformsComponent(p)
+    , vibratoComboBox(p)
 {
     edge = 5;
     setSize(500, 250);

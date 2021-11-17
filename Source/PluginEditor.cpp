@@ -16,6 +16,7 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     , lfoFrenquencySliderAttachment (*p.getApvts(), "lfoFrequency", lfoFrequencyVibratoSlider)
     , undoRedoComponent (p)
     , interpolationComponent(p)
+    , waveformsComponent(p)
 {
     edge = 5;
     setSize(500, 250);

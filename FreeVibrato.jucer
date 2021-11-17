@@ -7,6 +7,8 @@
       <FILE id="PsMErf" name="Constants.h" compile="0" resource="0" file="Source/Constants.h"/>
     </GROUP>
     <GROUP id="{E1B2019C-3853-5D7D-9209-FAB883ED45CF}" name="GUI">
+      <FILE id="qvKeNp" name="InterpolationComponent.cpp" compile="1" resource="0"
+            file="Source/InterpolationComponent.cpp"/>
       <FILE id="Bv0tXD" name="InterpolationComponent.h" compile="0" resource="0"
             file="Source/InterpolationComponent.h"/>
       <FILE id="C7xuWv" name="UndoRedoComponent.h" compile="0" resource="0"
@@ -19,6 +21,8 @@
       <FILE id="s8yGSK" name="VibratoSlider.h" compile="0" resource="0" file="Source/VibratoSlider.h"/>
       <FILE id="BgBOPb" name="VibratoSliderLookAndFeel.h" compile="0" resource="0"
             file="Source/VibratoSliderLookAndFeel.h"/>
+      <FILE id="nAn5Fd" name="WaveformsComponent.cpp" compile="1" resource="0"
+            file="Source/WaveformsComponent.cpp"/>
       <FILE id="AXS277" name="WaveformsComponent.h" compile="0" resource="0"
             file="Source/WaveformsComponent.h"/>
     </GROUP>

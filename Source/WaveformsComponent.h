@@ -11,47 +11,34 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "PluginProcessor.h"
+#include "Constants.h"
 
-class WaveformsComponent : public juce::Component
+
+class WaveformsComponent 
+    : public juce::Component
+    , public juce::AudioProcessorValueTreeState::Listener
 {
 public:
-    WaveformsComponent()
-    {
-        addAndMakeVisible(waveformsLabel);
-        waveformsLabel.setText("Waveforms:", juce::dontSendNotification);
+    WaveformsComponent(FreeVibratoAudioProcessor& p);
 
-        addAndMakeVisible(sineButton);
-        addAndMakeVisible(triangleButton);
-        addAndMakeVisible(squareButton);
-        addAndMakeVisible(sawtoothButton);
-        addAndMakeVisible(inverseSawtoothButton);
+    ~WaveformsComponent();
 
-    }
+    void resized() override;
 
-    ~WaveformsComponent()
-    {
+    void parameterChanged(const juce::String& parameterID, float newValue) override;
 
-    }
+    void buttonClicked(float buttonNumber);
 
-    void resized() override
-    {
-        waveformsLabel.setBounds(getX(), getY(), getWidth(), getHeight() / 2);
-
-        int margin = getX();
-        sineButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
-        margin += getWidth() / 5;
-        triangleButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
-        margin += getWidth() / 5;
-        squareButton.setBounds(margin, getHeight() / 3, getWidth()  / 5, getHeight() / 3);
-        margin += getWidth() / 5;
-        sawtoothButton.setBounds(margin, getHeight() / 3, getWidth()  / 5, getHeight() / 3);
-        margin += getWidth() / 5;
-        inverseSawtoothButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
-
-    }
+    void highlightSelectedButton(float buttonNumber);
 
 private:
+    FreeVibratoAudioProcessor& audioProcessor;
 
     juce::Label waveformsLabel;
     juce::TextButton sineButton, triangleButton, squareButton, sawtoothButton, inverseSawtoothButton;
+
+    float selectedButton;
+
+    juce::TextButton* getButton(float buttonNumber);
 };

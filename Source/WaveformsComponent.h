@@ -36,9 +36,10 @@ private:
     FreeVibratoAudioProcessor& audioProcessor;
 
     juce::Label waveformsLabel;
-    juce::TextButton sineButton, triangleButton, squareButton, sawtoothButton, inverseSawtoothButton;
+    juce::ImageButton sineButton, triangleButton, squareButton, sawtoothButton, inverseSawtoothButton;
 
     float selectedButton;
 
-    juce::TextButton* getButton(float buttonNumber);
+    juce::ImageButton* getButton(float buttonNumber);
+    void createImageButtons();
 };

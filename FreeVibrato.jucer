@@ -39,6 +39,14 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="ZPmYvz" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <GROUP id="{D2CF4E0A-6C5A-AA2F-DA92-0197A410A5CC}" name="Assets">
+      <FILE id="kUfvVK" name="inverse_sawtooth.png" compile="0" resource="1"
+            file="Source/Assets/inverse_sawtooth.png"/>
+      <FILE id="JYR9Di" name="sawtooth.png" compile="0" resource="1" file="Source/Assets/sawtooth.png"/>
+      <FILE id="shIpwG" name="sine.png" compile="0" resource="1" file="Source/Assets/sine.png"/>
+      <FILE id="szuZIk" name="square.png" compile="0" resource="1" file="Source/Assets/square.png"/>
+      <FILE id="lOPZoG" name="triangle.png" compile="0" resource="1" file="Source/Assets/triangle.png"/>
+    </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>

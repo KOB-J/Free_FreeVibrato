@@ -30,12 +30,6 @@ WaveformsComponent::WaveformsComponent(FreeVibratoAudioProcessor& p)
 
     sineButton.setToggleState(true, juce::dontSendNotification);
 
-    //sineButton.setColour(juce::TextButton::buttonColourId, pluginColor.darker());
-    //triangleButton.setColour(juce::TextButton::buttonColourId, pluginColor);
-    //squareButton.setColour(juce::TextButton::buttonColourId, pluginColor);
-    //sawtoothButton.setColour(juce::TextButton::buttonColourId, pluginColor);
-    //inverseSawtoothButton.setColour(juce::TextButton::buttonColourId, pluginColor);
-
     sineButton.onClick = [this] {buttonClicked(0.0f); };
     triangleButton.onClick = [this] {buttonClicked(0.25f); };
     squareButton.onClick = [this] {buttonClicked(0.5f); };
@@ -47,7 +41,7 @@ WaveformsComponent::WaveformsComponent(FreeVibratoAudioProcessor& p)
 
 WaveformsComponent::~WaveformsComponent()
 {
-   
+    audioProcessor.getApvts()->addParameterListener(juce::StringRef("Waveforms"), this);
 }
 
 void WaveformsComponent::resized() 

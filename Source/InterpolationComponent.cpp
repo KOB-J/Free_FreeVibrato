@@ -38,7 +38,9 @@ InterpolationComponent::InterpolationComponent(FreeVibratoAudioProcessor& p)
 }
 
 InterpolationComponent::~InterpolationComponent()
-{}
+{
+    audioProcessor.getApvts()->removeParameterListener(juce::StringRef("Interpolation"), this);
+}
 
 void InterpolationComponent::paint(juce::Graphics& g) 
 {

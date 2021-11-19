@@ -11,8 +11,9 @@
 #pragma once
 
 #include <JuceHeader.h>
-//#include "PluginProcessor.h"
 #include "Constants.h"
+#include "PluginProcessor.h"
+
 
 class UndoRedoComponent : public juce::Component
 {
@@ -36,7 +37,6 @@ public:
 
         undoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->undo(); };
         redoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->redo(); };
-
     }
 
     ~UndoRedoComponent()

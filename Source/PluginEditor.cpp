@@ -18,10 +18,12 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     , interpolationComponent(p)
     , waveformsComponent(p)
     , vibratoComboBox(p)
+    , sliderComponent(p)
 {
     edge = 5;
     setSize(500, 250);
 
+    addAndMakeVisible(sliderComponent);
     addAndMakeVisible(sweepWidthVibratoSlider);
     addAndMakeVisible(lfoFrequencyVibratoSlider);
     addAndMakeVisible(vibratoLabel);
@@ -55,6 +57,10 @@ void FreeVibratoAudioProcessorEditor::resized()
     auto bounds = getBounds();
 
     //TODO set responsive sizes
+
+    sliderComponent.setSize(300, 130);
+    sliderComponent.setTopLeftPosition(edge, (getHeight() * 0.3) - 30);
+
     sweepWidthVibratoSlider.setBounds(50, getHeight() * 0.3, 100, 100);
     lfoFrequencyVibratoSlider.setBounds(200, getHeight() * 0.3, 100, 100);
 

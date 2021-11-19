@@ -11,6 +11,8 @@
             file="Source/InterpolationComponent.cpp"/>
       <FILE id="Bv0tXD" name="InterpolationComponent.h" compile="0" resource="0"
             file="Source/InterpolationComponent.h"/>
+      <FILE id="wkp69C" name="SliderComponent.h" compile="0" resource="0"
+            file="Source/SliderComponent.h"/>
       <FILE id="C7xuWv" name="UndoRedoComponent.h" compile="0" resource="0"
             file="Source/UndoRedoComponent.h"/>
       <FILE id="HWLNzo" name="VibratoComboBox.h" compile="0" resource="0"

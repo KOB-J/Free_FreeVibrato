@@ -17,6 +17,7 @@
 #include "Constants.h"
 #include "WaveformsComponent.h"
 #include "InterpolationComponent.h"
+#include "SliderComponent.h"
 
 
 class FreeVibratoAudioProcessorEditor  : public juce::AudioProcessorEditor
@@ -40,6 +41,7 @@ private:
     VibratoComboBox vibratoComboBox; 
     WaveformsComponent waveformsComponent;
     InterpolationComponent interpolationComponent;
+    SliderComponent sliderComponent;
 
     juce::AudioProcessorValueTreeState::SliderAttachment sweepWidthSliderAttachment, lfoFrenquencySliderAttachment;
 

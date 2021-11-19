@@ -55,15 +55,17 @@ void WaveformsComponent::resized()
     waveformsLabel.setBounds(getX(), getY(), getWidth(), getHeight() / 2);
 
     int margin = getX();
-    sineButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
+    auto space = (getWidth() / 5) - 1;
+
+    sineButton.setBounds(margin, getHeight() / 3, space, getHeight() / 3);
     margin += getWidth() / 5;
-    triangleButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
+    triangleButton.setBounds(margin, getHeight() / 3, space, getHeight() / 3);
     margin += getWidth() / 5;
-    squareButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
+    squareButton.setBounds(margin, getHeight() / 3, space, getHeight() / 3);
     margin += getWidth() / 5;
-    sawtoothButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
+    sawtoothButton.setBounds(margin, getHeight() / 3, space, getHeight() / 3);
     margin += getWidth() / 5;
-    inverseSawtoothButton.setBounds(margin, getHeight() / 3, getWidth() / 5, getHeight() / 3);
+    inverseSawtoothButton.setBounds(margin, getHeight() / 3, space, getHeight() / 3);
 
 }
 

@@ -42,20 +42,23 @@ InterpolationComponent::~InterpolationComponent()
 
 void InterpolationComponent::paint(juce::Graphics& g) 
 {
-    g.setColour(juce::Colours::white);
+    g.setColour(juce::Colours::black);
     //g.fillRoundedRectangle(100, 100, 100, 100, 10);// getBounds().toFloat(), 10.0f);
-    //g.drawText("test", 50, 50, 50, 50, juce::Justification::centred);
 
-    //g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 10, 4);
+    //g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), 10);
+
+    //g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 10, 1);
 }
 
 void InterpolationComponent::resized() 
 {
     auto stepAhead = getHeight() * 0.25f;
-    interpolationLabel.setBounds(getX(), getY(), getWidth(), stepAhead);
-    nearestInterpolation.setBounds(getX(), stepAhead, getWidth(), stepAhead);
-    linearInterpolation.setBounds(getX(), stepAhead * 2, getWidth(), stepAhead);
-    cubicInterpolation.setBounds(getX(), stepAhead * 3, getWidth(), stepAhead);
+    auto margin = 4;
+
+    interpolationLabel.setBounds(getX() + margin, getY(), getWidth() - margin * 2, stepAhead - margin - 2);
+    nearestInterpolation.setBounds(getX() + margin, stepAhead, getWidth() - margin * 2, stepAhead - margin);
+    linearInterpolation.setBounds(getX() + margin, stepAhead * 2, getWidth() - margin * 2, stepAhead - margin);
+    cubicInterpolation.setBounds(getX() + margin, stepAhead * 3, getWidth() - margin * 2, stepAhead - margin);
 }
 
 void InterpolationComponent::parameterChanged(const juce::String& parameterID, float newValue) 

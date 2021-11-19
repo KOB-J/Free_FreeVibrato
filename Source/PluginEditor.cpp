@@ -40,7 +40,8 @@ void FreeVibratoAudioProcessorEditor::paint (juce::Graphics& g)
 {
     g.fillAll(juce::Colours::white);
 
-    g.setColour(pluginColor);
+    g.setColour(pluginBackgroundColor);
+    //g.setColour(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 
     juce::Path roundedBackground;
     juce::Rectangle<int> localBounds = getLocalBounds();
@@ -62,10 +63,10 @@ void FreeVibratoAudioProcessorEditor::resized()
     undoRedoComponent.setSize(100, 30);
     undoRedoComponent.setTopLeftPosition(getWidth() - (getWidth() / 4), edge);
 
-    vibratoComboBox.setBounds(getWidth() - (getWidth() / 2), edge, 100, 30);
+    vibratoComboBox.setBounds(getWidth() * 0.7, getHeight() - (edge + 30), 100, 30);
 
     waveformsComponent.setSize(200, 100);
-    waveformsComponent.setTopLeftPosition(edge + 15,  getHeight() - 80);
+    waveformsComponent.setTopLeftPosition(50,  getHeight() - 80);
 
     interpolationComponent.setSize(100, 100);
     interpolationComponent.setTopLeftPosition(getWidth() * 0.7f, getHeight() * 0.3f);

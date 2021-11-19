@@ -31,6 +31,8 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     addAndMakeVisible(vibratoComboBox);
     addAndMakeVisible(waveformsComponent);
     addAndMakeVisible(interpolationComponent);
+
+    configureSliderLabelValues();
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -76,4 +78,29 @@ void FreeVibratoAudioProcessorEditor::resized()
 
     interpolationComponent.setSize(100, 100);
     interpolationComponent.setTopLeftPosition(getWidth() * 0.7f, getHeight() * 0.3f);
+}
+
+void FreeVibratoAudioProcessorEditor::configureSliderLabelValues()
+{
+    sliderComponent.getSweepWidthValue()->setText(
+        juce::String(sweepWidthVibratoSlider.getValue() * 1000) + " Ms"
+        , juce::dontSendNotification);
+
+    sliderComponent.getLfoFrequencyValue()->setText(
+        juce::String(lfoFrequencyVibratoSlider.getValue() * 10) + " Hz"
+        , juce::dontSendNotification);
+
+    sweepWidthVibratoSlider.onValueChange = [this]
+    {
+        sliderComponent.getSweepWidthValue()->setText(
+            juce::String(sweepWidthVibratoSlider.getValue() * 1000) + " Ms"
+            , juce::dontSendNotification);
+    };
+
+    lfoFrequencyVibratoSlider.onValueChange = [this]
+    {
+        sliderComponent.getLfoFrequencyValue()->setText(
+            juce::String(lfoFrequencyVibratoSlider.getValue() * 10) + " Hz"
+            , juce::dontSendNotification);
+    };
 }

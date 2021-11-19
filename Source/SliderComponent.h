@@ -17,15 +17,11 @@
 
 class SliderComponent 
     : public juce::Component
-    , public juce::AudioProcessorValueTreeState::Listener
 {
 public:
     SliderComponent(FreeVibratoAudioProcessor& p)
         : audioProcessor(p)
     {
-        p.getApvts()->addParameterListener(juce::StringRef("sweepWidth"), this);
-        p.getApvts()->addParameterListener(juce::StringRef("lfoFrequency"), this);
-
         addAndMakeVisible(sweepWidthLabel);
         addAndMakeVisible(lfoFrequencyLabel);
         addAndMakeVisible(sweepWidthValue);
@@ -35,18 +31,12 @@ public:
         lfoFrequencyLabel.setText("LFO Frequency:", juce::dontSendNotification);
         sweepWidthLabel.setFont(juce::Font(12.0f, juce::Font::italic));
         lfoFrequencyLabel.setFont(juce::Font(12.0f, juce::Font::italic));
-
+        sweepWidthValue.setFont(juce::Font(12.0f, juce::Font::italic));
+        lfoFrequencyValue.setFont(juce::Font(12.0f, juce::Font::italic));
     }
 
     ~SliderComponent()
     {
-        audioProcessor.getApvts()->addParameterListener(juce::StringRef("sweepWidth"), this);
-        audioProcessor.getApvts()->addParameterListener(juce::StringRef("lfoFrequency"), this);
-    }
-
-    void paint(juce::Graphics& g) override
-    {
-        //g.fillAll(juce::Colours::black);
     }
 
     void resized() override
@@ -57,22 +47,8 @@ public:
         lfoFrequencyValue.setBounds(165, 90, 100, 10);
     }
 
-    void parameterChanged(const juce::String& parameterID, float newValue) override
-    {
-        DBG("SliderComponent, slider value: " << newValue);
-
-        if (parameterID == "sweepWidth")
-        {
-            auto value = newValue * 1000;
-            sweepWidthValue.setText(juce::String(value), juce::dontSendNotification);
-        }
-
-        if (parameterID == "lfoFrequency")
-        {
-            auto value = newValue;
-            lfoFrequencyValue.setText(juce::String(value), juce::dontSendNotification);
-        }
-    }
+    juce::Label* getSweepWidthValue() { return &sweepWidthValue; }
+    juce::Label* getLfoFrequencyValue() { return &lfoFrequencyValue; }
 
 private:
     FreeVibratoAudioProcessor& audioProcessor;

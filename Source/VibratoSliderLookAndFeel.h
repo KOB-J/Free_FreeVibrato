@@ -43,18 +43,14 @@ public:
 
         g.fillPath(circle1);
 
-        //*****
         juce::Path inner1;
-        //bounds.reduce(3, 3);
         inner1.addPieSegment(bounds,
             0,
             juce::MathConstants<float>::twoPi * slider.getValue() * (1 / slider.getMaximum()),
             0.5f);
 
-        g.setColour(sliderProgressCurve);//juce::Colours::white);
-
+        g.setColour(sliderProgressCurve);
         g.fillPath(inner1);
-        //*****
 
         juce::Path path3;
 
@@ -106,7 +102,6 @@ public:
 
         auto theta = slider.getValue() * (1 / slider.getMaximum()) * juce::MathConstants<float>::twoPi;
         theta -= juce::MathConstants<float>::halfPi;
-        //DBG("theta: " << theta);
         auto line = juce::Line<float>((centreXMinus * cos(theta)) + centreX, (centreYMinus * sin(theta)) + centreY, (halfCentreX * cos(theta)) + centreX, (halfCentreY * sin(theta)) + centreY);
 
         g.drawLine(line);

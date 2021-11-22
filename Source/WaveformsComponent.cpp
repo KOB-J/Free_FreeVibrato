@@ -125,7 +125,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         sine,
         1.0f,
-        buttonHighlightedColor//juce::Colours::black
+        buttonHighlightedColor
     );
 
     auto square = juce::ImageCache::getFromMemory(BinaryData::square_png, BinaryData::square_pngSize);
@@ -141,7 +141,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         square,
         1.0f,
-        buttonHighlightedColor//juce::Colours::black
+        buttonHighlightedColor
     );
 
     auto triangle = juce::ImageCache::getFromMemory(BinaryData::triangle_png, BinaryData::triangle_pngSize);
@@ -157,7 +157,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         triangle,
         1.0f,
-        buttonHighlightedColor//juce::Colours::black
+        buttonHighlightedColor
     );
 
     auto sawtooth = juce::ImageCache::getFromMemory(BinaryData::sawtooth_png, BinaryData::sawtooth_pngSize);
@@ -173,7 +173,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         sawtooth,
         1.0f,
-        buttonHighlightedColor//juce::Colours::black
+        buttonHighlightedColor
     );
 
     auto inverse_sawtooth = juce::ImageCache::getFromMemory(BinaryData::inverse_sawtooth_png, BinaryData::inverse_sawtooth_pngSize);
@@ -189,7 +189,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         inverse_sawtooth,
         1.0f,
-        buttonHighlightedColor//juce::Colours::black
+        buttonHighlightedColor
     );
 }
 

@@ -15,7 +15,7 @@
 #include <JuceHeader.h>
 #include <math.h>
 
-const float kMaximumSweepWidth = 0.05;
+const float maximumSweepWidth = 0.05f;
 
 class Vibrato
 {
@@ -38,20 +38,20 @@ public:
 
     enum Waveforms
     {
-        kWaveformSine = 1,
-        kWaveformTriangle,
-        kWaveformSquare,
-        kWaveformSawtooth,
-        kWaveformInverseSawtooth,
-        kNumWaveforms
+        waveformSine = 1,
+        waveformTriangle,
+        waveformSquare,
+        waveformSawtooth,
+        waveformInverseSawtooth,
+        numWaveforms
     };
 
     enum Interpolation
     {
-        kInterpolationNearestNeighbour = 1,
-        kInterpolationLinear,
-        kInterpolationCubic,
-        kNumInterpolations
+        interpolationNearestNeighbour = 1,
+        interpolationLinear,
+        interpolationCubic,
+        numInterpolations
     };
 
 

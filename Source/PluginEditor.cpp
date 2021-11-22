@@ -55,7 +55,6 @@ void FreeVibratoAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour(black);
     g.fillRoundedRectangle(getWidth() * 0.7f, getHeight() * 0.3f, 100.0f, 100.0f, 10.0f);
-    g.fillRoundedRectangle(getWidth() * 0.7f, getHeight() * 0.3f, getWidth() * 0.3f, 20.0f, 10.0f);
 }
 
 void FreeVibratoAudioProcessorEditor::resized()

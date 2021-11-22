@@ -12,13 +12,13 @@
 
 Vibrato::Vibrato() : delayBuffer(2, 1)
 {
-    sweepWidth = .01;
-    frequency = 2.0;
-    waveform = kWaveformSine;
-    interpolation = kInterpolationCubic;
+    sweepWidth = 0.01f;
+    frequency = 2.0f;
+    waveform = waveformSine;
+    interpolation = interpolationCubic;
 
     delayBufferLength = 1;
-    lfoPhase = 0.0;
+    lfoPhase = 0.0f;
     inverseSampleRate = 1.0 / 44100.0;
     delayTimeSmooth = sweepWidth;
 
@@ -37,10 +37,10 @@ void Vibrato::prepare(double sampleRate, int samplesPerBlock)
     vibratoSampleRate = sampleRate;
     vibratoSamplesPerBlock = samplesPerBlock;
 
-    delayBufferLength = (int)(kMaximumSweepWidth * sampleRate) + 3;
+    delayBufferLength = (int)(maximumSweepWidth * sampleRate) + 3;
     delayBuffer.setSize(2, delayBufferLength);
     delayBuffer.clear();
-    lfoPhase = 0.0;
+    lfoPhase = 0.0f;
 
     inverseSampleRate = 1.0 / sampleRate;
 }
@@ -82,7 +82,7 @@ void Vibrato::process(juce::AudioBuffer<float>& buffer, float& sweepWidthParamet
             readPointerBlock = fmodf((float)writePointerBlock - (float)(currentDelay * vibratoSampleRate) + (float)delayBufferLength - 3.0,
                 (float)delayBufferLength);
 
-            if (interpolation == kInterpolationLinear)
+            if (interpolation == interpolationLinear)
             {
                 float fraction = readPointerBlock - floorf(readPointerBlock);
                 int previousSample = (int)floorf(readPointerBlock);
@@ -90,7 +90,7 @@ void Vibrato::process(juce::AudioBuffer<float>& buffer, float& sweepWidthParamet
                 interpolatedSample = fraction * delayData[nextSample]
                     + (1.0f - fraction) * delayData[previousSample];
             }
-            else if (interpolation == kInterpolationCubic)
+            else if (interpolation == interpolationCubic)
             {
                 int sample1 = (int)floorf(readPointerBlock);
                 int sample2 = (sample1 + 1) % delayBufferLength;
@@ -143,29 +143,29 @@ float Vibrato::lfo(float phase, int waveform)
 {
     switch (waveform)
     {
-    case kWaveformTriangle:
+    case waveformTriangle:
         if (phase < 0.25f)
             return 0.5f + 2.0f * phase;
         else if (phase < 0.75f)
             return 1.0f - 2.0f * (phase - 0.25f);
         else
             return 2.0f * (phase - 0.75f);
-    case kWaveformSquare:
+    case waveformSquare:
         if (phase < 0.5f)
             return 1.0f;
         else
             return 0.0f;
-    case kWaveformSawtooth:
+    case waveformSawtooth:
         if (phase < 0.5f)
             return 0.5f + phase;
         else
             return phase - 0.5f;
-    case kWaveformInverseSawtooth:
+    case waveformInverseSawtooth:
         if (phase < 0.5f)
             return 0.5f - phase;
         else
             return 1.5f - phase;
-    case kWaveformSine:
+    case waveformSine:
     default:
         return 0.5f + 0.5f * sinf(2.0 * M_PI * phase);
     }

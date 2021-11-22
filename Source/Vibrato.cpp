@@ -20,6 +20,7 @@ Vibrato::Vibrato() : delayBuffer(2, 1)
     delayBufferLength = 1;
     lfoPhase = 0.0;
     inverseSampleRate = 1.0 / 44100.0;
+    delayTimeSmooth = sweepWidth;
 
     delayWritePosition = 0;
 
@@ -57,8 +58,8 @@ void Vibrato::process(juce::AudioBuffer<float>& buffer, float& sweepWidthParamet
     const int numberOfChannels = buffer.getNumChannels();
     const int numSamples = buffer.getNumSamples();
 
-    int channel, dpw;
-    float dpr, currentDelay, ph;
+    int channel, writePointerBlock;
+    float readPointerBlock, currentDelay, phase;
 
     for (channel = 0; channel < numberOfChannels; ++channel)
     {
@@ -66,35 +67,37 @@ void Vibrato::process(juce::AudioBuffer<float>& buffer, float& sweepWidthParamet
 
         float* delayData = delayBuffer.getWritePointer(juce::jmin(channel, delayBuffer.getNumChannels() - 1));
 
-        dpw = delayWritePosition;
-        ph = lfoPhase;
+        writePointerBlock = delayWritePosition;
+        phase = lfoPhase;
 
         for (int i = 0; i < numSamples; ++i)
         {
             const float in = channelData[i];
             float interpolatedSample = 0.0;
 
-            currentDelay = sweepWidth * lfo(ph, waveform);
+            delayTimeSmooth = delayTimeSmooth - 0.001 * (delayTimeSmooth - sweepWidth);
 
-            dpr = fmodf((float)dpw - (float)(currentDelay * vibratoSampleRate) + (float)delayBufferLength - 3.0,
+            currentDelay = delayTimeSmooth * lfo(phase, waveform);
+
+            readPointerBlock = fmodf((float)writePointerBlock - (float)(currentDelay * vibratoSampleRate) + (float)delayBufferLength - 3.0,
                 (float)delayBufferLength);
 
             if (interpolation == kInterpolationLinear)
             {
-                float fraction = dpr - floorf(dpr);
-                int previousSample = (int)floorf(dpr);
+                float fraction = readPointerBlock - floorf(readPointerBlock);
+                int previousSample = (int)floorf(readPointerBlock);
                 int nextSample = (previousSample + 1) % delayBufferLength;
                 interpolatedSample = fraction * delayData[nextSample]
                     + (1.0f - fraction) * delayData[previousSample];
             }
             else if (interpolation == kInterpolationCubic)
             {
-                int sample1 = (int)floorf(dpr);
+                int sample1 = (int)floorf(readPointerBlock);
                 int sample2 = (sample1 + 1) % delayBufferLength;
                 int sample3 = (sample2 + 1) % delayBufferLength;
                 int sample0 = (sample1 - 1 + delayBufferLength) % delayBufferLength;
 
-                float fraction = dpr - floorf(dpr);
+                float fraction = readPointerBlock - floorf(readPointerBlock);
                 float frsq = fraction * fraction;
 
                 float a0 = -0.5f * delayData[sample0] + 1.5f * delayData[sample1]
@@ -108,27 +111,27 @@ void Vibrato::process(juce::AudioBuffer<float>& buffer, float& sweepWidthParamet
             }
             else
             {
-                int closestSample = (int)floorf(dpr + 0.5);
+                int closestSample = (int)floorf(readPointerBlock + 0.5);
                 if (closestSample == delayBufferLength)
                     closestSample = 0;
                 interpolatedSample = delayData[closestSample];
             }
 
-            delayData[dpw] = in;
+            delayData[writePointerBlock] = in;
 
-            if (++dpw >= delayBufferLength)
-                dpw = 0;
+            if (++writePointerBlock >= delayBufferLength)
+                writePointerBlock = 0;
 
             channelData[i] = interpolatedSample;
 
-            ph += frequency * inverseSampleRate;
-            if (ph >= 1.0)
-                ph -= 1.0;
+            phase += frequency * inverseSampleRate;
+            if (phase >= 1.0)
+                phase -= 1.0;
         }
     }
 
-    delayWritePosition = dpw;
-    lfoPhase = ph;
+    delayWritePosition = writePointerBlock;
+    lfoPhase = phase;
 }
 
 void Vibrato::reset()

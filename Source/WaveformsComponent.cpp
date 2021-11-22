@@ -14,13 +14,13 @@
 WaveformsComponent::WaveformsComponent(FreeVibratoAudioProcessor& p)
     : audioProcessor(p)
 {
-    
     selectedButton = 0.0f;
 
     p.getApvts()->addParameterListener(juce::StringRef("Waveforms"), this);
 
     addAndMakeVisible(waveformsLabel);
     waveformsLabel.setText("Waveforms:", juce::dontSendNotification);
+    waveformsLabel.setFont(juce::Font(12.0f, juce::Font::bold));
 
     addAndMakeVisible(sineButton);
     addAndMakeVisible(triangleButton);
@@ -37,11 +37,16 @@ WaveformsComponent::WaveformsComponent(FreeVibratoAudioProcessor& p)
     inverseSawtoothButton.onClick = [this] {buttonClicked(1.0f); };
 
     createImageButtons();
+    configureTooltip();
 }
 
 WaveformsComponent::~WaveformsComponent()
 {
     audioProcessor.getApvts()->addParameterListener(juce::StringRef("Waveforms"), this);
+}
+
+void WaveformsComponent::paint(juce::Graphics& g)
+{
 }
 
 void WaveformsComponent::resized() 
@@ -120,7 +125,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         sine,
         1.0f,
-        juce::Colours::black
+        buttonHighlightedColor//juce::Colours::black
     );
 
     auto square = juce::ImageCache::getFromMemory(BinaryData::square_png, BinaryData::square_pngSize);
@@ -136,7 +141,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         square,
         1.0f,
-        juce::Colours::black
+        buttonHighlightedColor//juce::Colours::black
     );
 
     auto triangle = juce::ImageCache::getFromMemory(BinaryData::triangle_png, BinaryData::triangle_pngSize);
@@ -152,7 +157,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         triangle,
         1.0f,
-        juce::Colours::black
+        buttonHighlightedColor//juce::Colours::black
     );
 
     auto sawtooth = juce::ImageCache::getFromMemory(BinaryData::sawtooth_png, BinaryData::sawtooth_pngSize);
@@ -168,7 +173,7 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         sawtooth,
         1.0f,
-        juce::Colours::black
+        buttonHighlightedColor//juce::Colours::black
     );
 
     auto inverse_sawtooth = juce::ImageCache::getFromMemory(BinaryData::inverse_sawtooth_png, BinaryData::inverse_sawtooth_pngSize);
@@ -184,6 +189,15 @@ void WaveformsComponent::createImageButtons()
         juce::Colours::grey,
         inverse_sawtooth,
         1.0f,
-        juce::Colours::black
+        buttonHighlightedColor//juce::Colours::black
     );
+}
+
+void WaveformsComponent::configureTooltip()
+{
+    sineButton.setTooltip(sineToolTip);
+    triangleButton.setTooltip(triangleToolTip);
+    squareButton.setTooltip(squareToolTip);
+    sawtoothButton.setTooltip(sawtoothToolTip);
+    inverseSawtoothButton.setTooltip(inverseSawtoothToolTip);
 }

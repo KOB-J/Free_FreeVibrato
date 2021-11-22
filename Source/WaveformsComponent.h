@@ -24,6 +24,8 @@ public:
 
     ~WaveformsComponent();
 
+    void paint(juce::Graphics& g) override;
+
     void resized() override;
 
     void parameterChanged(const juce::String& parameterID, float newValue) override;
@@ -42,4 +44,5 @@ private:
 
     juce::ImageButton* getButton(float buttonNumber);
     void createImageButtons();
+    void configureTooltip();
 };

@@ -29,11 +29,11 @@ public:
 
         setColour(juce::GroupComponent::ColourIds::outlineColourId, juce::Colours::black);
 
-        undoButton.setColour(juce::TextButton::buttonColourId, juce::Colours::white);
-        undoButton.setColour(juce::TextButton::textColourOffId, pluginColor);
+        undoButton.setColour(juce::TextButton::buttonColourId, darkYellow);
+        undoButton.setColour(juce::TextButton::textColourOffId, black);
 
-        redoButton.setColour(juce::TextButton::buttonColourId, juce::Colours::white);
-        redoButton.setColour(juce::TextButton::textColourOffId, pluginColor);
+        redoButton.setColour(juce::TextButton::buttonColourId, darkYellow);
+        redoButton.setColour(juce::TextButton::textColourOffId, black);
 
         undoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->undo(); };
         redoButton.onClick = [this] {audioProcessor.getApvts()->undoManager->redo(); };

@@ -23,18 +23,22 @@ InterpolationComponent::InterpolationComponent(FreeVibratoAudioProcessor& p)
     addAndMakeVisible(cubicInterpolation);
 
     interpolationLabel.setText("Interpolation:", juce::dontSendNotification);
+    interpolationLabel.setFont(juce::Font(12.0f, juce::Font::bold));
+    interpolationLabel.setColour(juce::Label::textColourId, white);
+
     nearestInterpolation.setButtonText("Nearest");
     linearInterpolation.setButtonText("Linear");
     cubicInterpolation.setButtonText("Cubic");
 
-    nearestInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor.darker());
-    linearInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor);
-    cubicInterpolation.setColour(juce::TextButton::buttonColourId, pluginColor);
+    nearestInterpolation.setColour(juce::TextButton::buttonColourId, darkYellow);
+    nearestInterpolation.setColour(juce::TextButton::textColourOffId, black);
+
+    linearInterpolation.setColour(juce::TextButton::buttonColourId, buttonHighlightedColor);
+    cubicInterpolation.setColour(juce::TextButton::buttonColourId, buttonHighlightedColor);
 
     nearestInterpolation.onClick = [this] {buttonClicked(0.0f); };
     linearInterpolation.onClick = [this] {buttonClicked(0.5f); };
     cubicInterpolation.onClick = [this] {buttonClicked(1.0f); };
-
 }
 
 InterpolationComponent::~InterpolationComponent()
@@ -44,12 +48,6 @@ InterpolationComponent::~InterpolationComponent()
 
 void InterpolationComponent::paint(juce::Graphics& g) 
 {
-    g.setColour(juce::Colours::black);
-    //g.fillRoundedRectangle(100, 100, 100, 100, 10);// getBounds().toFloat(), 10.0f);
-
-    //g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), 10);
-
-    //g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), 10, 1);
 }
 
 void InterpolationComponent::resized() 
@@ -79,8 +77,12 @@ void InterpolationComponent::highlightSelectedButton(float buttonNumber)
 {
     if (selectedButton != buttonNumber)
     {
-        getButton(selectedButton)->setColour(juce::TextButton::buttonColourId, pluginColor);
-        getButton(buttonNumber)->setColour(juce::TextButton::buttonColourId, pluginColor.darker());
+        getButton(selectedButton)->setColour(juce::TextButton::buttonColourId, buttonHighlightedColor);
+        getButton(selectedButton)->setColour(juce::TextButton::textColourOffId, white);
+
+        getButton(buttonNumber)->setColour(juce::TextButton::buttonColourId, darkYellow);
+        getButton(buttonNumber)->setColour(juce::TextButton::textColourOffId, black);
+
         selectedButton = buttonNumber;
     }
 }

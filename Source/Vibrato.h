@@ -68,6 +68,7 @@ private:
 
     float lfoPhase;
     double inverseSampleRate;
+    float delayTimeSmooth;
 
     float sweepWidth;
     float frequency;

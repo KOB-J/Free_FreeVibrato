@@ -39,12 +39,18 @@ public:
     {
     }
 
+    void paint(juce::Graphics& g) override
+    {
+        g.setColour(black);
+        g.fillRect(0, 110, 250, 10);
+    }
+
     void resized() override
     {
-        sweepWidthLabel.setBounds(15, 15, 100, 10);
-        lfoFrequencyLabel.setBounds(165, 15, 100, 10);
-        sweepWidthValue.setBounds(15, 90, 100, 10);
-        lfoFrequencyValue.setBounds(165, 90, 100, 10);
+        sweepWidthLabel.setBounds(50, 15, 100, 10);
+        lfoFrequencyLabel.setBounds(200, 15, 100, 10);
+        sweepWidthValue.setBounds(8, 110, 100, 10);
+        lfoFrequencyValue.setBounds(158, 110, 100, 10);
     }
 
     juce::Label* getSweepWidthValue() { return &sweepWidthValue; }

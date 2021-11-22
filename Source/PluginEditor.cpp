@@ -33,6 +33,8 @@ FreeVibratoAudioProcessorEditor::FreeVibratoAudioProcessorEditor (FreeVibratoAud
     addAndMakeVisible(interpolationComponent);
 
     configureSliderLabelValues();
+
+    vibratoLabel.setColour(juce::Label::textColourId, darkYellow);
 }
 
 FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
@@ -42,16 +44,18 @@ FreeVibratoAudioProcessorEditor::~FreeVibratoAudioProcessorEditor()
 //==============================================================================
 void FreeVibratoAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::white);
-
+    g.fillAll(juce::Colours::black);
     g.setColour(pluginBackgroundColor);
-    //g.setColour(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 
     juce::Path roundedBackground;
     juce::Rectangle<int> localBounds = getLocalBounds();
     localBounds.reduce(edge, edge);
     roundedBackground.addRoundedRectangle(localBounds, 20.0f);
     g.fillPath(roundedBackground);
+
+    g.setColour(black);
+    g.fillRoundedRectangle(getWidth() * 0.7f, getHeight() * 0.3f, 100.0f, 100.0f, 10.0f);
+    g.fillRoundedRectangle(getWidth() * 0.7f, getHeight() * 0.3f, getWidth() * 0.3f, 20.0f, 10.0f);
 }
 
 void FreeVibratoAudioProcessorEditor::resized()
@@ -66,12 +70,12 @@ void FreeVibratoAudioProcessorEditor::resized()
     sweepWidthVibratoSlider.setBounds(50, getHeight() * 0.3, 100, 100);
     lfoFrequencyVibratoSlider.setBounds(200, getHeight() * 0.3, 100, 100);
 
-    vibratoLabel.setBounds(edge + 15, edge + 5, getWidth() / 4, getHeight() / 5);
+    vibratoLabel.setBounds(edge + 15, edge, getWidth() / 4, getHeight() / 5);
 
-    undoRedoComponent.setSize(100, 30);
+    undoRedoComponent.setSize(100, 20);
     undoRedoComponent.setTopLeftPosition(getWidth() - (getWidth() / 4), edge);
 
-    vibratoComboBox.setBounds(getWidth() * 0.7, getHeight() - (edge + 30), 100, 30);
+    vibratoComboBox.setBounds(getWidth() * 0.7, getHeight() - (edge + 30), 100, 25);
 
     waveformsComponent.setSize(200, 100);
     waveformsComponent.setTopLeftPosition(50,  getHeight() - 80);
@@ -87,7 +91,7 @@ void FreeVibratoAudioProcessorEditor::configureSliderLabelValues()
         , juce::dontSendNotification);
 
     sliderComponent.getLfoFrequencyValue()->setText(
-        juce::String(lfoFrequencyVibratoSlider.getValue() * 10) + " Hz"
+        juce::String(lfoFrequencyVibratoSlider.getValue()) + " Hz"
         , juce::dontSendNotification);
 
     sweepWidthVibratoSlider.onValueChange = [this]
@@ -100,7 +104,7 @@ void FreeVibratoAudioProcessorEditor::configureSliderLabelValues()
     lfoFrequencyVibratoSlider.onValueChange = [this]
     {
         sliderComponent.getLfoFrequencyValue()->setText(
-            juce::String(lfoFrequencyVibratoSlider.getValue() * 10) + " Hz"
+            juce::String(lfoFrequencyVibratoSlider.getValue()) + " Hz"
             , juce::dontSendNotification);
     };
 }

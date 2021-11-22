@@ -31,7 +31,7 @@ public:
         p.getApvts()->addParameterListener(juce::StringRef("Interpolation"), this);
 
         setColour(juce::ComboBox::ColourIds::outlineColourId, juce::Colours::aliceblue);
-        setColour(juce::ComboBox::ColourIds::backgroundColourId, pluginColor);
+        setColour(juce::ComboBox::ColourIds::backgroundColourId, pluginBackgroundColor);
 
         juce::StringArray presetsArray = {"  ", "preset 1", "preset 2", "preset 3", "preset 4"};
         addItemList(presetsArray, 1);

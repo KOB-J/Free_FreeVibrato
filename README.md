@@ -1,5 +1,7 @@
 # Free_FreeVibrato
 
-When the plugin will be ready to go, the readme.md will be updated with photos and "how to" section
+This is a free vibrato plugin.
 
-actual statut = in progress
+To play with, open the FreeVibrato.jucer file with projucer, and build the project for your desired operating system.
+
+![Vibrato Plugint](https://github.com/KOB-J/Free_FreeVibrato/blob/main/Img/FreeVibrato_capture.PNG)
